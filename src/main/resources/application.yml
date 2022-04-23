@@ -1,0 +1,13 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /testdb
+
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:testdb
+      #    jdbc-url: jdbc:h2:file:~/testdb
+      username: test
+      password: test
