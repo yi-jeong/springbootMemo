@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemoServiceTest {
 
-    MemoService memoService = new MemoService();
+    private MemoService memoService;
 
     @Test
     void create() {
@@ -19,8 +19,7 @@ class MemoServiceTest {
         Memo memo = new Memo();
         Date now = new Date();
         memo.setContent("hi");
-        memo.setCreateDate(now);
-        memo.setCheck(false);
+
 
         // when
         Long memoSerial = memoService.Create(memo);

@@ -1,10 +1,12 @@
 package com.memo.memo.repository.memo;
 
 import com.memo.memo.domain.memo.Memo;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.*;
 
+@Repository
 public class MemoryMemoRepository implements MemoRepository {
 
     private static Map<Long, Memo> map = new HashMap<>();
@@ -25,7 +27,7 @@ public class MemoryMemoRepository implements MemoRepository {
     @Override
     public Optional<Memo> findByDate(Date createDate) {
         return map.values().stream()
-                .filter( memo -> memo.getCreateDate().equals(createDate))
+                .filter( memo -> memo.getCreateAt().equals(createDate))
                 .findAny();
     }
 

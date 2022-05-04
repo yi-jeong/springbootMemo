@@ -26,8 +26,6 @@ class MemoryMemoRepositoryTest {
         Memo memo = new Memo();
         Date now = new Date();
         memo.setContent("hi");
-        memo.setCreateDate(now);
-        memo.setCheck(false);
 
         repository.save(memo);
 
@@ -54,14 +52,12 @@ class MemoryMemoRepositoryTest {
         Memo memo1= new Memo();
         Date now = new Date();
         memo1.setContent("hi");
-        memo1.setCreateDate(now);
-        memo1.setCheck(false);
+
         repository.save(memo1);
 
         Memo memo2= new Memo();
         memo2.setContent("hi222");
-        memo2.setCreateDate(now);
-        memo2.setCheck(false);
+
         repository.save(memo2);
 
         List<Memo> result = repository.findAll();

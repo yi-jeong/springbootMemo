@@ -2,15 +2,19 @@ package com.memo.memo.service.memo;
 
 import com.memo.memo.domain.memo.Memo;
 import com.memo.memo.repository.memo.MemoRepository;
-import com.memo.memo.repository.memo.MemoryMemoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@RequiredArgsConstructor
 public class MemoService {
 
-    private final MemoRepository memoRepository = new MemoryMemoRepository();
+    private final MemoRepository memoRepository;
 
     // 01. 추가
     public Long Create(Memo memo){
