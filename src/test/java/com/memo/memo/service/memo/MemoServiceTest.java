@@ -20,13 +20,10 @@ class MemoServiceTest {
         Date now = new Date();
         memo.setContent("hi");
 
-
         // when
-        Long memoSerial = memoService.Create(memo);
+        memoService.createMemo(memo);
 
         // then
-        Memo findMemo = memoService.findOne(memoSerial).get();
-        assertThat(memo.getContent()).isEqualTo(findMemo.getContent());
     }
 
     @Test
