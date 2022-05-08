@@ -6,15 +6,15 @@ spring:
 
   datasource:
     hikari:
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:mem:memo;MODE=PostgreSQL;
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://61.111.18.166:5432/memo
       username: memo
       password: memo
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true

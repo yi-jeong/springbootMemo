@@ -20,7 +20,7 @@ public class Memo extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition="text")
     private String content;
 
     @Column(name = "checked", nullable = false)
