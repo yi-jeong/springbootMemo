@@ -1,40 +1,57 @@
 package com.memo.memo.domain.memo;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
-import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class MemoService {
 
-    private final MemoRepository jpaMemoRepository;
+    private final static Sort MEMO_SORT = Sort.by(Sort.Direction.ASC, "created_at");
 
-    // 메모 저장
-    public void createMemo(Memo memo){
-        jpaMemoRepository.save(memo);
+    private final MemoRepository memoRepository;
+
+    public MemoService(MemoRepository memoRepository) {
+        this.memoRepository = memoRepository;
     }
 
-    // 메모 조회(일단위 groupBy, createdDate asc)
-    public void getMemoList(LocalDate date) {
-        List<Memo> memos = jpaMemoRepository.findByDate(date);
+    @Transactional(readOnly = true)
+    public void getMemoList() {
+        List<Memo> memoList = memoRepository.findAll(MEMO_SORT);
+        // 메모가 빈경우
+        if (ObjectUtils.isEmpty(memoList)) {
+            return;
+        }
+
+
+        List<MemoDto.MemoResponse> memoResponses =  memoList.stream()
+                .map(Memo::toResponse)
+                .collect(Collectors.toList());
     }
 
-    // 메모 할일 변경
-    public void updateMemoCheck(Memo memo) {
-        Memo targetMemo = jpaMemoRepository.getById(memo.getSerial());
-        // 수정한거 정의
-        // targetMemo.setChecked();
-
-        // 갱신
-        jpaMemoRepository.save(targetMemo);
+    public void addMemo(MemoDto.MemoRequest memoDto) {
+        Memo memo = memoDto.toEntity();
+        memoRepository.save(memo);
     }
 
-    // 메모 삭제
-    public void deleteMemo(Long serial) {
-        jpaMemoRepository.deleteById(serial);
+    public void modifyMemo(Long id, MemoDto.MemoRequest memoDto) {
+        Memo memo = memoRepository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException(String.format("%d번 메모가 존재하지 않습니다", id));
+        });
+
+        memo.update(memoDto);
+
+        memoRepository.save(memo);
     }
+
+    public void removeMemo(Long id) {
+        memoRepository.deleteById(id);
+    }
+
 
 }
