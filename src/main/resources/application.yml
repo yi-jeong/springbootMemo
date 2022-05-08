@@ -1,4 +1,13 @@
 spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+
+  devtools:
+    livereload:
+      enabled: true
+
   h2:
     console:
       enabled: true

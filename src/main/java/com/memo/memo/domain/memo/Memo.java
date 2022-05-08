@@ -34,11 +34,13 @@ public class Memo extends AbstractEntity {
         this.checked = checked;
     }
 
+    // 정보 갱신
     public void update(MemoDto.MemoRequest memoDto) {
         this.content = memoDto.getContent();
         this.checked = memoDto.isChecked();
     }
 
+    // 응답객체 변환
     public MemoDto.MemoResponse toResponse() {
         return MemoDto.MemoResponse.builder()
                 .id(id)
