@@ -2,16 +2,14 @@ spring:
   h2:
     console:
       enabled: true
-      path: /testdb
+      path: /memo
 
   datasource:
     hikari:
       driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:mem:testdb
-      #    jdbc-url: jdbc:h2:file:~/testdb
-      username: test
-      password: test
-
+      jdbc-url: jdbc:h2:mem:memo
+      username: memo
+      password: memo
 
   jpa:
     show-sql: true

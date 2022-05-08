@@ -1,23 +1,16 @@
-package com.memo.memo.service.memo;
+package com.memo.memo.domain.memo;
 
-import com.memo.memo.domain.memo.Memo;
-import com.memo.memo.repository.memo.JpaMemoRepository;
-import com.memo.memo.repository.memo.MemoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class MemoService {
 
-    private final JpaMemoRepository jpaMemoRepository;
+    private final MemoRepository jpaMemoRepository;
 
     // 메모 저장
     public void createMemo(Memo memo){

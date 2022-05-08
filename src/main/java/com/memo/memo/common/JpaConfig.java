@@ -1,4 +1,4 @@
-package com.memo.memo;
+package com.memo.memo.common;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
